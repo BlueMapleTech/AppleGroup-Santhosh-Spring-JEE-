@@ -20,20 +20,22 @@
 <body>
 
 	<h1>Book U6 Show</h1>
-    
+
 	<br>
 	<h2>Admin Page</h2>
 
 	<a href="hom">home</a>!!
-	<a href="llists">movielist</a>!!
-	<a href="timelist">timing</a>!!
-	<a href="count">tikcount</a>!!
-	<p>------------------------------------------------------------------------------------------------------------------------------------</p>
+	<a href="edit1">AddMovie</a>!!
+	<a href="edittime1">AddTime</a>!!
+	<a href="count">AddTicketTypeAndCount</a>!!
+    <a href="ticketrate">AddTicketRate</a>!!
+
+	<p>---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------</p>
 	<div class="row">
-		<div class="col-sm-12" >
+		<div class="col-sm-12">
 			<div class="col-sm-6" style="background-color: lavender;">
 				MOVIE LIST
-				<table border=1 class="table">
+				<table border=3 class="table">
 					<thead>
 						<tr>
 							<th>name</th>
@@ -42,20 +44,26 @@
 						</tr>
 					</thead>
 					<tbody>
-						<c:forEach items="${details}" var="user">
-							<tr>
-								<td><c:out value="${user.moviename}" /></td>
-								<td><c:out value="${user.release_date}" /></td>
-								<td><a href="edit?name=<c:out value="${user.movie_id}"/>">edit</a></td>
 
-							</tr>
+						<c:forEach items="${model.data}" var="record" >
+
+							<c:forEach items="${record.details}" var="user">
+								<tr>
+									<td><c:out value="${user.moviename}" /></td>
+									<td><c:out value="${user.release_date}" /></td>
+									<td><a href="edit?name=<c:out value="${user.movie_id}"/>">edit</a></td>
+
+								</tr>
+							</c:forEach>
 						</c:forEach>
+
+
 					</tbody>
 				</table>
 			</div>
 			<div class="col-sm-6" style="background-color: lavender;">
 				TIME LIST
-				<table border=1 class="table">
+				<table border=3 class="table">
 					<thead>
 						<tr>
 							<th>timing</th>
@@ -63,13 +71,17 @@
 						</tr>
 					</thead>
 					<tbody>
-						<c:forEach items="${timel}" var="user">
-							<tr>
-								<td><c:out value="${user.timing}" /></td>
-								<td><a
-									href="edittime?id=<c:out value="${user.timing_id}"/>">edit</a></td>
+						<c:forEach items="${model.data}" var="record" >
 
-							</tr>
+							<c:forEach items="${record.timel}" var="user">
+								<tr>
+									<td><c:out value="${user.timing}" /></td>
+									<td><a
+										href="edittime?id=<c:out value="${user.timing_id}"/>">edit</a></td>
+
+								</tr>
+							</c:forEach>
+
 						</c:forEach>
 					</tbody>
 				</table>
@@ -77,5 +89,94 @@
 
 		</div>
 	</div>
+	<div class="row">
+		<div class="col-sm-12">
+			<div class="col-sm-6" style="background-color: lavender;">
+				RESERVATION STATUS
+				<table border=3 class="table">
+					<thead>
+						<tr>
+							<th>Reservation_Status</th>
+							<th colspan=1>Action</th>
+						</tr>
+					</thead>
+					<tbody>
+						<c:forEach items="${model.data}" var="record" >
+							<c:forEach items="${record.reservationdetails}" var="user">
+								<tr>
+									<td><c:out value="${user.reservation_status}" /></td>
+									<td><a
+										href="editstatus?name=<c:out value="${user.reservation_status_id}"/>">edit</a></td>
+
+								</tr>
+							</c:forEach>
+						</c:forEach>
+					</tbody>
+				</table>
+			</div>
+			<div class="col-sm-6" style="background-color: lavender;">
+				TICKET TYPE AND COUNT
+				<table border=3 class="table">
+					<thead>
+						<tr>
+							<th>ticket type</th>
+							<th>ticket count</th>
+							<th colspan=1>Action</th>
+						</tr>
+					</thead>
+					<tbody>
+						<c:forEach items="${model.data}" var="record" >
+
+							<c:forEach items="${record.ticket}" var="user">
+								<tr>
+									<td><c:out value="${user.ticket_type}" /></td>
+									<td><c:out value="${user.ticket_type_count}" /></td>
+									<td><a
+										href="edittickettype?id=<c:out value="${user.ticket_type_id}"/>">edit</a></td>
+
+								</tr>
+							</c:forEach>
+						</c:forEach>
+					</tbody>
+				</table>
+			</div>
+
+		</div>
+	</div>
+	<div class="col-sm-6" style="background-color: lavender;">
+				RateDetail
+				<table border=3 class="table">
+					<thead>
+						<tr>
+							<th>TicketRate</th>
+							<th>TicketTypeId</th>
+							<th>movieid</th>
+							<th colspan=1>Action</th>
+						</tr>
+					</thead>
+					<tbody>
+
+						<c:forEach items="${model.data}" var="record" >
+
+							<c:forEach items="${record.ticketrate}" var="user">
+								<tr>
+									<td><c:out value="${user.ticket_rate}" /></td>
+									<td><c:out value="${user.ticket_type_ticket_type_id}" /></td>
+									<td><c:out value="${user.movie_movie_id}" /></td>
+									<td><a href="editticketrate?name=<c:out value="${user.ticket_rate_id}"/>">edit</a></td>
+
+								</tr>
+							</c:forEach>
+						</c:forEach>
+
+
+					</tbody>
+				</table>
+			</div>
+	
 </body>
+
+
+
+
 </html>
