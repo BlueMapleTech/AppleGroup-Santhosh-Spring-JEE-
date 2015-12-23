@@ -24,9 +24,8 @@ import com.bluemapletach.app.service.LogServiceInterface;
 public class LogController {
 	@Autowired
 	LogServiceInterface service;
-
-
-	@RequestMapping(value = "/adminpage")
+	@RequestMapping(value = "/logcontroller")
+	
 	public ModelAndView display() {
 
 		List<MovieDetail> details = service.listOfmovie();
@@ -35,7 +34,7 @@ public class LogController {
 		List<ReservationStatusDetail> details1 = service.listOfStatus();
 		List<TicketCountDetails> details2 = service.listOfTicketTypeAndCount();
 		List<TimeDetails> details3 = service.timeList();
-		List<TicketRateDetails> details4 = service.rateList();
+	//	List<TicketRateDetails> details4 = service.rateList();
 		Map<String, Object> myModel = new HashMap<String, Object>();
 		List<Map> data = new ArrayList<Map>();
 		Map testData = new HashMap();
@@ -43,11 +42,14 @@ public class LogController {
 		testData.put("reservationdetails", details1);
 		testData.put("ticket", details2);
 		testData.put("timel", details3);
-		testData.put("ticketrate", details4);
+		//testData.put("ticketrate", details4);
 		data.add(testData);
 		myModel.put("data", data);
 		return new ModelAndView("detail", "model", myModel);
 
 	}
+	
+
+	
 
 }

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.bluemapletach.app.model.MovieDetail;
 import com.bluemapletach.app.model.UserDetails;
 
 @Repository
@@ -43,7 +44,7 @@ public class UserDaoImp implements UserDaoInterfaces {
 		String sql = "SELECT * FROM user WHERE username = ?";
 		UserDetails userDetails1 = (UserDetails) getJdbcTemplate().queryForObject(sql, new Object[] { name1 },
 				new UserRowMapper());
-		//UserDetails userDetail2=new UserDetails()
+		// UserDetails userDetail2=new UserDetails()
 		int role = userDetails1.getRoleid1();
 		String name = userDetails1.getUsername();
 		System.out.println(name);
@@ -53,6 +54,16 @@ public class UserDaoImp implements UserDaoInterfaces {
 		userDetails1.setPassword(pass);
 		return userDetails1;
 
+	}
+
+	public int findUserId(String name) {
+		String sql = "SELECT * FROM user WHERE username = ?";
+
+		UserDetails userDetails1 = (UserDetails) getJdbcTemplate().queryForObject(sql, new Object[] { name },
+				new UserRowMapper());
+		int id = userDetails1.getUserid();
+		System.out.println(id);
+		return id;
 	}
 
 }

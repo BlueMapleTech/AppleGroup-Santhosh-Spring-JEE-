@@ -1,12 +1,17 @@
 package com.bluemapletach.app.service;
 
+import java.util.Date;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.bluemapletach.app.Dao.MovieDaoInteface;
 import com.bluemapletach.app.Dao.RoleDaoInterface;
 import com.bluemapletach.app.Dao.UserDaoImp;
 //import com.bluemapletach.app.Dao.DaoInterface;
 import com.bluemapletach.app.Dao.UserDaoInterfaces;
+import com.bluemapletach.app.model.MovieDetail;
 import com.bluemapletach.app.model.UserDetails;
 @Service
 public class UserServiceImp implements UserServiceInterface{
@@ -14,7 +19,14 @@ public class UserServiceImp implements UserServiceInterface{
 	UserDaoInterfaces dao;
 	@Autowired
 	RoleDaoInterface dao1;
+	@Autowired
+	MovieDaoInteface dao2;
 	@Override
+	
+	/**
+	 * 
+	 *
+	 */
 	public UserDetails insert(UserDetails userDetails) {
 
 		System.out.println("insert method");
@@ -48,6 +60,15 @@ public class UserServiceImp implements UserServiceInterface{
 		return userDetails;
 	}
 
-	
+	public List<MovieDetail> movieList(int id)
+	{
+		return dao2.movieList(id);
+		
+	}
+
+	public int findUserId(String name)
+	{
+		return dao.findUserId(name);
+	}
 
 }

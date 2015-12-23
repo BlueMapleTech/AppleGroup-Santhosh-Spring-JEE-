@@ -29,20 +29,19 @@ public class TicketTypeAndCountDaoIm implements TicketTypeAndCountDaoInterface {
 		int id = ticketDetails.getTicket_type_id();
 		if (id == 0) {
 			String sql = "INSERT INTO ticket_type "
-					+ "(ticket_type,ticket_type_count,createddate,updateddate,createdby,updatedby) VALUES (?, ?,?,?,?,?)";
+					+ "(ticket_type,ticket_count) VALUES (?, ?)";
 
 			jdbcTemplate = new JdbcTemplate(dataSource);
 
 			jdbcTemplate.update(sql,
-					new Object[] { ticketDetails.getTicket_type(), ticketDetails.getTicket_type_count(),
-							ticketDetails.getDate(), ticketDetails.getDate(), ticketDetails.getName(),
-							ticketDetails.getName() });
+					new Object[] { ticketDetails.getTicket_type(), ticketDetails.getTicket_count(),
+							 });
 		} else if (id > 0) {
-			String sql = "UPDATE  ticket_type SET ticket_type=?,ticket_type_count=?,updateddate=? WHERE ticket_type_id=?";
+			String sql = "UPDATE  ticket_type SET ticket_type=?,ticket_count=? WHERE ticket_type_id=?";
 			jdbcTemplate = new JdbcTemplate(dataSource);
 
-			jdbcTemplate.update(sql, ticketDetails.getTicket_type(), ticketDetails.getTicket_type_count(),
-					ticketDetails.getDate(), ticketDetails.getTicket_type_id());
+			jdbcTemplate.update(sql, ticketDetails.getTicket_type(), ticketDetails.getTicket_count(),
+					 ticketDetails.getTicket_type_id());
 
 		}
 		return ticketDetails;

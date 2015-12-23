@@ -9,6 +9,6 @@
 <body>
 <h1>WELCOME TO BOOK U6 SHOW</h1>
 <h4>click here to view admin page</h4><br/>
-<a href="adminpage">click</a>
+<a href="logcontroller">click</a>
 </body>
 </html>
