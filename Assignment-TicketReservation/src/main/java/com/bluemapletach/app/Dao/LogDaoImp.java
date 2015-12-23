@@ -15,8 +15,9 @@ import com.bluemapletach.app.model.TicketCountDetails;
 import com.bluemapletach.app.model.TicketRateDetails;
 import com.bluemapletach.app.model.TimeDetails;
 import com.bluemapletach.app.model.UserDetails;
+
 @Repository
-public class LogDaoImp implements LogDaoInterface{
+public class LogDaoImp implements LogDaoInterface {
 	public UserDetails userDetails;
 	@Autowired
 	private DataSource dataSource;
@@ -27,19 +28,15 @@ public class LogDaoImp implements LogDaoInterface{
 		return jdbcTemplate = new JdbcTemplate(dataSource);
 	}
 
-
-	
-		public List<MovieDetail> listOfmovie() {
+	public List<MovieDetail> listOfmovie() {
 		System.out.println("dao method");
 		String sql = "select * from movie";
 		List<MovieDetail> movieDetail = getJdbcTemplate().query(sql, new BeanPropertyRowMapper(MovieDetail.class));
-             MovieDetail userDetails=new MovieDetail();
-             //System.out.println(userDetails.getNo_of_show());
-		System.out.println(movieDetail);
 
 		return movieDetail;
 
 	}
+
 	public List<ReservationStatusDetail> listOfStatus() {
 
 		String sql = "select * from reservation_status";
@@ -49,35 +46,34 @@ public class LogDaoImp implements LogDaoInterface{
 		return details;
 
 	}
-	public List<TicketCountDetails> listOfTicketTypeAndCount()
-	{
-		String sql = "select * from ticket_type";
-		List<TicketCountDetails> tickettypeDetail = getJdbcTemplate().query(sql, new BeanPropertyRowMapper(TicketCountDetails.class));
 
-		//System.out.println(movieDetail);
+	public List<TicketCountDetails> listOfTicketTypeAndCount() {
+		String sql = "select * from ticket_type";
+		List<TicketCountDetails> tickettypeDetail = getJdbcTemplate().query(sql,
+				new BeanPropertyRowMapper(TicketCountDetails.class));
+
+		System.out.println(tickettypeDetail);
 
 		return tickettypeDetail;
 
-		
 	}
+
 	public List<TimeDetails> timeList() {
 
 		System.out.println("dao method");
 		String sql = "select * from timing";
 		List<TimeDetails> timeDetails = getJdbcTemplate().query(sql, new BeanPropertyRowMapper(TimeDetails.class));
 
-		System.out.println(timeDetails);
-
 		return timeDetails;
 
 	}
-	public List<TicketRateDetails> rateList()
-	{
+
+	public List<TicketRateDetails> rateList() {
 		String sql = "SELECT * FROM ticket_rate";
-		
-		List<TicketRateDetails> rateList  = getJdbcTemplate().query(sql,
+
+		List<TicketRateDetails> rateList = getJdbcTemplate().query(sql,
 				new BeanPropertyRowMapper(TicketRateDetails.class));
-			
+
 		return rateList;
 	}
 

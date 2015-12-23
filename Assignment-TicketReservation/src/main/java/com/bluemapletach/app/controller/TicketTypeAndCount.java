@@ -18,31 +18,19 @@ import com.bluemapletach.app.service.TicketTypeAndCountServiceInterface;
 public class TicketTypeAndCount {
 	@Autowired
 	TicketTypeAndCountServiceInterface service;
+	ModelAndView model = new ModelAndView();
 
-	@RequestMapping(value = "/count")
-	public ModelAndView ticcount() {
-		ModelAndView model = new ModelAndView();
-		int id = 0;
-		// model.setViewName("tickettype");
+	@RequestMapping(value = "/edittickettype", method = RequestMethod.GET)
+	public ModelAndView display(@RequestParam("id") int id) {
 		return new ModelAndView("tickettype", "id", id);
 
 	}
 
 	@RequestMapping(value = "/tickettypecount", method = RequestMethod.POST)
 	public ModelAndView ticketTypeCount(@ModelAttribute TicketCountDetails ticketDetails) {
-		// System.out.println("detail");
-
 		service.ticketTypeCount(ticketDetails);
-		ModelAndView model = new ModelAndView();
 		model.setViewName("detail1");
 		return model;
-	}
-
-	@RequestMapping(value = "/edittickettype", method = RequestMethod.GET)
-	public ModelAndView display(@RequestParam("id") int id) {
-		ModelAndView model = new ModelAndView();
-		return new ModelAndView("tickettype", "id", id);
-
 	}
 
 }

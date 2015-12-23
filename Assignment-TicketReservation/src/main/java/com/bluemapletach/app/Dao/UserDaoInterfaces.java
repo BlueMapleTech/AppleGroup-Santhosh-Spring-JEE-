@@ -7,4 +7,6 @@ public interface UserDaoInterfaces {
 
 	public UserDetails checklog(String name1) throws Exception;
 
+	public int findUserId(String name);
+
 }

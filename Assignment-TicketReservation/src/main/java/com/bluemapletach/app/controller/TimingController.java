@@ -23,13 +23,6 @@ public class TimingController {
 		int msg = timing_id;
 		return new ModelAndView("timelist", "msg", msg);
 	}
-
-	@RequestMapping(value = "/edittime1")
-	public ModelAndView movieTiming() {
-		int msg = 0;
-		return new ModelAndView("timelist", "msg", msg);
-	}
-
 	@RequestMapping(value = "/ltime", method = RequestMethod.POST)
 	public ModelAndView movieTime(@ModelAttribute TimeDetails timeDetails) {
 		System.out.println("detail");

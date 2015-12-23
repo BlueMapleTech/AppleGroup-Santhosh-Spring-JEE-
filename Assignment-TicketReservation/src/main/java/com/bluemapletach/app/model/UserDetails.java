@@ -5,7 +5,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class UserDetails {
-	private String userid;
+	private int userid;
 	private String username;
 	private String password;
 	private String email;
@@ -17,6 +17,14 @@ public class UserDetails {
 	private int roleid = 1;
 	private int roleid1;
 
+	public int getUserid() {
+		return userid;
+	}
+
+	public void setUserid(int userid) {
+		this.userid = userid;
+	}
+
 	public int getRoleid1() {
 		return roleid1;
 	}
@@ -25,14 +33,7 @@ public class UserDetails {
 		this.roleid1 = roleid1;
 	}
 
-	public String getUserid() {
-		return userid;
-	}
-
-	public void setUserid(String userid) {
-		this.userid = userid;
-	}
-
+	
 	public String getUsername() {
 		return username;
 	}
@@ -143,4 +144,13 @@ public class UserDetails {
 		this.msg = msg;
 	}
 
+	@Override
+	public String toString() {
+		return "UserDetails [userid=" + userid + ", username=" + username + ", password=" + password + ", email="
+				+ email + ", firstname=" + firstname + ", lastname=" + lastname + ", address=" + address
+				+ ", createdby=" + createdby + ", updateby=" + updateby + ", roleid=" + roleid + ", roleid1=" + roleid1
+				+ ", date=" + date + ", msg=" + msg + "]";
+	}
+
+	
 }

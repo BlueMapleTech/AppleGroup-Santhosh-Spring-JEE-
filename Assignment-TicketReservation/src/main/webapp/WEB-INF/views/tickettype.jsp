@@ -11,7 +11,7 @@
 <form action="tickettypecount" method="post">
 TicketId:<input type="hidden" name="ticket_type_id" value=${id}>
 TicketType:<input type="text" name="ticket_type"/>
-TicketCount:<input type="text" name="ticket_type_count">
+TicketCount:<input type="text" name="ticket_count">
 <input type="submit" value="click">
 </form>
 </body>

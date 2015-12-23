@@ -9,6 +9,7 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.bluemapletach.app.model.MovieHasTimingDetail;
 import com.bluemapletach.app.model.TimeDetails;
 import com.bluemapletach.app.model.UserDetails;
 
@@ -31,21 +32,31 @@ public class TimingDao implements TimingDaoInterface {
 		if (timing_id == 0) {
 
 			String sql = "INSERT INTO timing "
-					+ "(timing,createddate,updateddate,createdby,updatedby) VALUES (?, ?, ?,?,?)";
+					+ "(timing) VALUES (?)";
 
 			jdbcTemplate = new JdbcTemplate(dataSource);
 
-			jdbcTemplate.update(sql, new Object[] { timeDetails.getTiming(), timeDetails.getDate(),
-					timeDetails.getDate(), timeDetails.getName(), timeDetails.getName() });
+			jdbcTemplate.update(sql, new Object[] { timeDetails.getTiming()});
 
 		} else if (timing_id > 0) {
-			String sql = "UPDATE  timing SET timing=?,updateddate=? WHERE timing_id=?";
+			String sql = "UPDATE  timing SET timing=? WHERE timing_id=?";
 			jdbcTemplate = new JdbcTemplate(dataSource);
 
-			jdbcTemplate.update(sql, timeDetails.getTiming(), timeDetails.getDate(), timeDetails.getTiming_id());
+			jdbcTemplate.update(sql, timeDetails.getTiming(), timeDetails.getTiming_id());
 
 		}
 		return timeDetails;
+	}
+	public String getTiming(TimeDetails detail)
+	{
+		int id=detail.getTiming_id();
+		System.out.println(id);
+		String sql = "SELECT timing FROM timing WHERE timing_id = '"+detail.getTiming_id()+"'";
+		
+		String customer=(String)getJdbcTemplate().queryForObject(sql, new Object[]{},String.class);
+	
+		return customer ;
+
 	}
 
 }
